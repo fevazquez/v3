@@ -12,7 +12,10 @@
 
 ![CircleCI](https://dl.circleci.com/status-badge/img/gh/fevazquez/v3/tree/main.svg?style=svg)
 ![Maintainability](https://qlty.sh/gh/fevazquez/projects/v3/maintainability.svg)
+![Code Coverage](https://qlty.sh/gh/fevazquez/projects/v3/coverage.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/fevazquez/v3)
+
+<img src="./src/assets/screenshot.png" />
 
 </div>
 
