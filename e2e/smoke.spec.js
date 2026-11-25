@@ -29,13 +29,23 @@ test('resume and favicon are served', async ({ request }) => {
   expect((await request.get('/favicon.svg')).ok()).toBeTruthy();
 });
 
-test('experience tabs switch', async ({ page }) => {
+test('experience tabs switch', async ({ page, isMobile }) => {
   await page.goto('/');
+
+  if (isMobile) {
+    const nisumAccordion = page.getByRole('button', { name: /Nisum/ });
+    await clickUntil(nisumAccordion, () =>
+      expect(nisumAccordion).toHaveAttribute('aria-expanded', 'true', { timeout: 1000 }),
+    );
+    await expect(page.locator('#experience')).toContainText('DevOps Engineer | Nisum');
+    return;
+  }
+
   const nisum = page.getByRole('tab', { name: 'Nisum' });
   await clickUntil(nisum, () =>
     expect(nisum).toHaveAttribute('aria-selected', 'true', { timeout: 1000 }),
   );
-  await expect(page.getByRole('tabpanel')).toContainText('DevOps Engineer, Nisum');
+  await expect(page.getByRole('tabpanel')).toContainText('DevOps Engineer | Nisum');
 });
 
 test('burger opens and closes the menu', async ({ page, isMobile }) => {
