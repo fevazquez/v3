@@ -13,4 +13,16 @@
       "zone_name": "fernandovazquez.dev",
     },
   ],
+  "env": {
+    "gamma": {
+      "workers_dev": true,
+      "preview_urls": true,
+      "routes": [
+        {
+          "pattern": "gamma.fernandovazquez.dev/*",
+          "zone_name": "fernandovazquez.dev",
+        },
+      ],
+    },
+  },
 }
