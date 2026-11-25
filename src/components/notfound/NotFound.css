@@ -1,0 +1,15 @@
+.notfound {
+  width: 100%;
+  max-width: 600px;
+  margin: 150px auto 50px;
+  text-align: center;
+}
+.notfound-title {
+  margin: 0;
+  font: 700 clamp(120px, 20vw, 500px)/1 var(--display);
+  color: var(--head);
+}
+.notfound p {
+  margin: 0 0 2rem;
+  font-size: clamp(40px, 5vw, 60px);
+}

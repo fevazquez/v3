@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+import Splash from '../components/splash/Splash.jsx';
+import Header from '../components/header/Header.jsx';
+import SideRails from '../components/sidebars/SideRails.jsx';
+import Footer from '../components/footer/Footer.jsx';
+
+interface Props {
+  title: string;
+  description: string;
+  splash?: boolean;
+}
+const { title, description, splash = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" style={splash ? undefined : '--splash: 0s'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {splash && <script is:inline>
+      try {
+        if (sessionStorage.getItem('splashSeen')) {
+          document.documentElement.style.setProperty('--splash', '0s');
+        } else {
+          sessionStorage.setItem('splashSeen', '1');
+        }
+      } catch {
+        // Ignore storage access errors (e.g. restricted privacy modes)
+      }
+    </script>}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {splash && <Splash />}
+    <Header client:load />
+    <SideRails />
+    <main id="top" class="after">
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>
