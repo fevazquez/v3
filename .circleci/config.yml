@@ -8,6 +8,9 @@ executors:
     docker:
       - image: mcr.microsoft.com/playwright:v1.65.1-noble
 
+orbs:
+  qlty-orb: qltysh/qlty-orb@0.0
+
 jobs:
   build-and-test:
     executor: node
@@ -25,6 +28,8 @@ jobs:
       - run:
           name: Unit tests with coverage
           command: npx vitest run --coverage --reporter=default --reporter=junit --outputFile.junit=test-results/junit.xml
+      - qlty-orb/coverage_publish:
+          files: coverage/lcov.info
       - run:
           name: Build site
           command: npm run build
