@@ -1,0 +1,43 @@
+.rail {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  color: var(--text);
+  opacity: 0;
+  animation: show 300ms var(--easing) forwards;
+  animation-delay: calc(var(--splash) + 1s);
+}
+.rail::after {
+  content: '';
+  width: 1px;
+  height: 90px;
+  background: var(--text);
+}
+.rail.l {
+  left: 40px;
+}
+.rail.r {
+  right: 40px;
+}
+.rail.r a {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .rail {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    animation: none;
+    opacity: 1;
+  }
+}

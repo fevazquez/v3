@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/hero/Hero.jsx';
+import About from '../components/about/About.jsx';
+import Experience from '../components/experience/Experience.jsx';
+import Projects from '../components/projects/Projects.jsx';
+import Contact from '../components/contact/Contact.jsx';
+
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import selfPhoto from '../assets/self.jpg';
+import portfolioImg from '../assets/screenshot.png';
+import homelabImg from '../assets/homelab.png';
+
+async function buildResponsiveImage(src: ImageMetadata, width: number, alt: string) {
+  const [img1x, img2x] = await Promise.all([
+    getImage({ src, width, format: 'webp' }),
+    getImage({ src, width: width * 2, format: 'webp' }),
+  ]);
+
+  return {
+    src: img1x.src,
+    srcSet: `${img1x.src} 1x, ${img2x.src} 2x`,
+    width: img1x.attributes.width,
+    height: img1x.attributes.height,
+    alt,
+  };
+}
+
+const [photo, homelabPicture, portfolioPicture] = await Promise.all([
+  buildResponsiveImage(selfPhoto, 300, 'Fernando Vazquez'),
+  buildResponsiveImage(homelabImg, 600, 'Automated Linux & Containerized Home Lab architecture'),
+  buildResponsiveImage(portfolioImg, 600, 'fernandovazquez.dev portfolio screenshot'),
+]);
+
+const pictures = [homelabPicture, portfolioPicture];
+---
+
+<Layout
+  title="Fernando Vazquez"
+  description="Fernando Vazquez is a software engineer at AWS working on server provisioning and rack orchestration."
+>
+  <Hero />
+  <About photo={photo} />
+  <Experience client:idle />
+  <Projects pictures={pictures} />
+  <Contact />
+</Layout>

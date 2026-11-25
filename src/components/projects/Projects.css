@@ -1,0 +1,155 @@
+.feat {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  margin: 0 0 6rem;
+  position: relative;
+  isolation: isolate;
+}
+.feat .vis {
+  grid-column: 1 / 8;
+  grid-row: 1;
+  position: relative;
+  height: 420px;
+  border-radius: 5px;
+  background: var(--menu);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.feat .vis img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.feat .vis.cover {
+  padding: 0;
+}
+.feat .vis.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+.feat .vis::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 20px;
+  left: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+  z-index: -1;
+  transition: var(--transition);
+}
+.feat:hover .vis::after {
+  top: 15px;
+  left: 15px;
+}
+.feat .info {
+  grid-column: 7/-1;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  text-align: right;
+}
+.feat h3 {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: var(--panel);
+  border-radius: 5px;
+  font: 700 1.75rem/1.2 var(--display);
+  color: var(--head);
+}
+.feat .desc {
+  margin: 1.25rem 0 0;
+  padding: 1.5rem;
+  background: var(--panel);
+  border-radius: 5px;
+}
+.feat ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem 1.25rem;
+  margin: 1.25rem 0 0;
+  padding: 0.25rem;
+  font-size: 0.82rem;
+  border-radius: 5px;
+  background: var(--panel);
+}
+.feat .links {
+  margin-top: 0.75rem;
+}
+.feat .links a {
+  display: inline-block;
+  padding: 0.4rem;
+}
+.feat.flip .vis {
+  grid-column: 6/-1;
+}
+.feat.flip .info {
+  grid-column: 1/7;
+  text-align: left;
+}
+.feat.flip ul {
+  justify-content: flex-start;
+}
+.feat.flip .vis::after {
+  left: auto;
+  right: 20px;
+}
+.feat.flip:hover .vis::after {
+  right: 15px;
+}
+@media (max-width: 768px) {
+  .feat {
+    display: block;
+    margin-bottom: 4rem;
+  }
+  .feat .vis {
+    display: none;
+  }
+  .feat .info,
+  .feat.flip .info {
+    text-align: left;
+  }
+  .feat ul,
+  .feat.flip ul {
+    justify-content: flex-start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feat .vis::after {
+    transition: none;
+  }
+}
+.diagram {
+  width: 100%;
+  height: 100%;
+}
+.diagram .box {
+  fill: var(--panel);
+  stroke: currentColor;
+  stroke-width: 1;
+}
+.diagram .box.dash {
+  stroke-dasharray: 5 4;
+}
+.diagram text {
+  fill: var(--head);
+  font: 500 15px var(--body);
+}
+.diagram line {
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
