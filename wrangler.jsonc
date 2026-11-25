@@ -1,8 +1,16 @@
 {
   "name": "fernandovazquez-dev",
   "compatibility_date": "2026-11-24",
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
   },
+  "routes": [
+    {
+      "pattern": "fernandovazquez.dev/*",
+      "zone_name": "fernandovazquez.dev",
+    },
+  ],
 }

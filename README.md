@@ -10,7 +10,7 @@
     <a href="https://github.com/fevazquez/v2" target="_blank">v2</a>
   </p>
 
-![CircleCI](https://dl.circleci.com/status-badge/img/gh/fevazquez/v3/tree/master.svg?style=svg)
+![CircleCI](https://dl.circleci.com/status-badge/img/gh/fevazquez/v3/tree/main.svg?style=svg)
 ![Maintainability](https://qlty.sh/gh/fevazquez/projects/v3/maintainability.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/fevazquez/v3)
 
